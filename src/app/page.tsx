@@ -15,6 +15,7 @@ export default async function HomePage() {
         <p className="text-xl text-gray-600 mb-8 max-w-2xl px-4 leading-relaxed">
           Quản lý bookmark thông minh. Tự động lưu trữ, phân loại và <strong className="text-blue-600">tóm tắt nội dung bằng Gemini AI</strong>.
         </p>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a
           href="/api/auth/signin"
           className="inline-block rounded-full bg-blue-600 px-8 py-4 text-lg font-semibold text-white shadow-lg hover:bg-blue-500 hover:scale-105 transition-all focus:outline-none"

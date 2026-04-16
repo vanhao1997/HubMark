@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 
 export default function DashboardClient() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [bookmarks, setBookmarks] = useState<any[]>([]);
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);

@@ -56,7 +56,7 @@ TÓM TẮT:`;
             contents: prompt,
         });
 
-        const summary = chatResponse.text()?.trim() || 'Không thể tạo bản tóm tắt phân tích AI.';
+        const summary = chatResponse.text?.trim() || 'Không thể tạo bản tóm tắt phân tích AI.';
 
         return {
             title,

@@ -15,7 +15,7 @@
     "@auth/prisma-adapter": "^2.11.2",
     "@base-ui/react": "^1.4.0",
     "@google/genai": "^1.50.1",
-    "@prisma/client": "^7.7.0",
+    "@prisma/client": "^6.6.0",
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -36,7 +36,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.15",
-    "prisma": "^7.7.0",
+    "prisma": "^6.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 
 export default function DashboardClient() {
     const [bookmarks, setBookmarks] = useState<any[]>([]);
@@ -42,27 +45,27 @@ export default function DashboardClient() {
 
     return (
         <div className="space-y-8">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4 tracking-tight">Thêm Bookmark Mới</h2>
-                <form onSubmit={addBookmark} className="flex flex-col sm:flex-row gap-4">
-                    <input
-                        type="url"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                        placeholder="https://example.com/article"
-                        className="flex-1 rounded-xl border border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-4 transition-all"
-                        required
-                        disabled={loading}
-                    />
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-blue-600 text-white font-medium px-8 py-4 rounded-xl shadow-md hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                        {loading ? "Đang gọi Gemini AI..." : "Lưu & Tóm tắt"}
-                    </button>
-                </form>
-            </div>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Thêm Bookmark Mới</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <form onSubmit={addBookmark} className="flex flex-col sm:flex-row gap-4">
+                        <Input
+                            type="url"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            placeholder="https://example.com/article"
+                            required
+                            disabled={loading}
+                            className="flex-1 text-base h-12"
+                        />
+                        <Button type="submit" disabled={loading} size="lg" className="h-12 w-full sm:w-auto">
+                            {loading ? "Đang gọi Gemini AI..." : "Lưu & Tóm tắt"}
+                        </Button>
+                    </form>
+                </CardContent>
+            </Card>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {bookmarks.length === 0 && !loading && (
@@ -71,23 +74,27 @@ export default function DashboardClient() {
                     </div>
                 )}
                 {bookmarks.map((bm) => (
-                    <div key={bm.id} className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all flex flex-col group">
-                        <h3 className="font-bold text-lg text-gray-900 leading-snug line-clamp-2" title={bm.title}>
-                            {bm.title}
-                        </h3>
-                        <a href={bm.url} target="_blank" rel="noreferrer" className="text-blue-500 text-sm mt-2 mb-4 truncate w-full block hover:underline">
-                            {bm.url}
-                        </a>
-                        <p className="text-gray-700 text-sm flex-1 line-clamp-5 leading-relaxed bg-gray-50 p-3 rounded-lg border border-gray-100">
-                            {bm.contentSummary || "Đang xử lý tóm tắt..."}
-                        </p>
-                        <div className="mt-5 pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500 font-medium">
+                    <Card key={bm.id} className="flex flex-col hover:border-blue-200 hover:shadow-md transition-all group">
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-lg leading-snug line-clamp-2" title={bm.title}>
+                                {bm.title}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-1 flex flex-col pb-3">
+                            <a href={bm.url} target="_blank" rel="noreferrer" className="text-blue-500 text-sm mb-4 truncate w-full block hover:underline">
+                                {bm.url}
+                            </a>
+                            <div className="text-gray-700 text-sm flex-1 line-clamp-5 leading-relaxed bg-gray-50 p-4 rounded-lg border border-gray-100">
+                                {bm.contentSummary || "Đang xử lý tóm tắt..."}
+                            </div>
+                        </CardContent>
+                        <CardFooter className="pt-2 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500 font-medium">
                             <span className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full border border-blue-100">
                                 {bm.group?.name || "Chưa phân nhóm"}
                             </span>
                             <span>{new Date(bm.createdAt).toLocaleDateString("vi-VN")}</span>
-                        </div>
-                    </div>
+                        </CardFooter>
+                    </Card>
                 ))}
             </div>
         </div>

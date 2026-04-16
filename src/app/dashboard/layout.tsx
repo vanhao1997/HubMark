@@ -19,6 +19,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                         </div>
                         <div className="flex items-center space-x-6">
                             <span className="text-sm font-medium text-gray-700 bg-gray-100 py-1 px-3 rounded-full">{session.user?.name || session.user?.email}</span>
+                            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
                             <a href="/api/auth/signout" className="text-sm font-medium text-red-600 hover:text-red-800 transition-colors">Đăng xuất</a>
                         </div>
                     </div>
